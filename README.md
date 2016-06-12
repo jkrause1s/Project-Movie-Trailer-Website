@@ -5,12 +5,13 @@ This project follows the Movie Trailer Website Project from Udacity. In this cod
 ##Introduction
 
 This code contains 3 files:
-*media.py
-    *File where Classes to get movie details are created and edited.
-*favorites.py
-    *File to create instances of your favorite movies. This is the file you will run to produce your website.
-*fresh_tomatoes.py
-    *File contains the HTML and functions to populate dynamic content based on movie details.
+
+* media.py
+    * File where Classes to get movie details are created and edited.
+* favorites.py
+    * File to create instances of your favorite movies. This is the file you will run to produce your website.
+* fresh_tomatoes.py
+    * File contains the HTML and functions to populate dynamic content based on movie details.
 
 ##API
 This code uses the API from the Movie Database. Details for this API and how to use in your own code are found at [TMDb](https://themoviedb.org)
