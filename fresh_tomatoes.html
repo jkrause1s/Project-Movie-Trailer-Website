@@ -1,0 +1,212 @@
+
+<head>
+    <meta charset="utf-8">
+    <title>My Favorite Movies</title>
+    <!-- Bootstrap 3 -->
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap-theme.min.css">
+    <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+    <script src="https://netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+    <style type="text/css" media="screen">
+        body {
+            padding-top: 80px;
+        }
+        #trailer .modal-dialog {
+            margin-top: 200px;
+            width: 640px;
+            height: 480px;
+        }
+        .hanging-close {
+            position: absolute;
+            top: -12px;
+            right: -12px;
+            z-index: 9001;
+        }
+        #trailer-video {
+            width: 100%;
+            height: 100%;
+        }
+        .contain_background{
+            background-image: url(http://scanachmedia.com/wp-content/uploads/2013/12/COLD-EDGE-BACKGROUND.jpg);
+            background-size: cover;
+            background-repeat: no-repeat;
+            padding:0px;
+            background-attachment: fixed;
+        }
+        .movie-tile {
+            margin-bottom: 20px;
+            padding-top: 20px;
+            font-family: Helvetica;
+        }
+        .shade{
+        background-color: rgba(255, 255, 255, 0.4);
+        border-radius:10px;
+        }
+        .movie-tile:hover {
+            background-color: rgba(161,176,181,0.2);
+            border-radius: 25px;
+            cursor: pointer;
+        }
+        .scale-media {
+            padding-bottom: 56.25%;
+            position: relative;
+        }
+        .scale-media iframe {
+            border: none;
+            height: 100%;
+            position: absolute;
+            width: 100%;
+            left: 0;
+            top: 0;
+            background-color: white;
+        }
+        .modal-info{
+            padding: 20px;
+        }
+        .crop-image{
+            width: 150px;
+            height: 112px;
+            margin: -20px 0 0 -20px
+        }
+    </style>
+    <script type="text/javascript" charset="utf-8">
+        // Pause the video when the modal is closed
+        $(document).on('click', '.hanging-close, .modal-backdrop, .modal', function (event) {
+            // Remove the src so the player itself gets removed, as this is the only
+            // reliable way to ensure the video stops playing in IE
+            $("#trailer-video-container").empty();
+        });
+        // Start playing the video whenever the trailer modal is opened
+        $(document).on('click', '.movie-tile', function (event) {
+            var trailerYouTubeId = $(this).attr('data-trailer-youtube-id')
+            var sourceUrl = 'http://www.youtube.com/embed/' + trailerYouTubeId + '?autoplay=1&html5=1';
+            $("#trailer-video-container").empty().append($("<iframe></iframe>", {
+              'id': 'trailer-video',
+              'type': 'text-html',
+              'src': sourceUrl,
+              'frameborder': 0
+            }));
+        });
+        // Animate in the movies when the page loads
+        $(document).ready(function () {
+          $('.movie-tile').hide().first().show("fast", function showNext() {
+            $(this).next("div").show("fast", showNext);
+          });
+        });
+    </script>
+</head>
+
+<!DOCTYPE html>
+<html lang="en">
+  <body>
+ <!-- Trailer Video Modal -->
+    <div class="modal" id="trailer">
+    <div class ="container">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <a href="#" class="hanging-close" data-dismiss="modal" aria-hidden="true">
+            <img src="https://lh5.ggpht.com/v4-628SilF0HtHuHdu5EzxD7WRqOrrTIDi_MhEG6_qkNtUK5Wg7KPkofp_VJoF7RS2LhxwEFCO1ICHZlc-o_=s0#w=24&h=24"/>
+          </a>
+          <div class="scale-media" id="trailer-video-container">
+          </div>
+        </div>
+      </div>
+      </div>
+    </div>
+
+    <!-- Main Page Content -->
+    <div class="container">
+      <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+          <div class="navbar-header">
+            <a class="navbar-brand" href="#">Joel's Movie Page</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container contain_background" >
+      
+<div class="col-md-6 col-lg-4 movie-tile text-center" data-trailer-youtube-id="71rDQ7z4eFg" data-toggle="modal" data-target="#trailer">
+    <img src="https://image.tmdb.org/t/p/original//MywWCQGJNUr5kivAQ7eseCG7rm.jpg" width="220" height="342">
+    <div class="shade">
+        <h3>Catch Me If You Can</h3>
+        <p>Released: December 2002</p>
+        <p>A true story about Frank Abagnale Jr. who, before his 19th birthday, successfully conned millions of dollars worth of checks ...
+    </div>
+</div>
+
+<div class="col-md-6 col-lg-4 movie-tile text-center" data-trailer-youtube-id="xitHF0IPJSQ" data-toggle="modal" data-target="#trailer">
+    <img src="https://image.tmdb.org/t/p/original//qmDpIHrmpJINaRKAfWQfftjCdyi.jpg" width="220" height="342">
+    <div class="shade">
+        <h3>Inception</h3>
+        <p>Released: July 2010</p>
+        <p>Cobb, a skilled thief who commits corporate espionage by infiltrating the subconscious of his targets is offered a chance to ...
+    </div>
+</div>
+
+<div class="col-md-6 col-lg-4 movie-tile text-center" data-trailer-youtube-id="lfqHb6INj3w" data-toggle="modal" data-target="#trailer">
+    <img src="https://image.tmdb.org/t/p/original//5IqaT3fza0Y9vKazjGwDGsNuuS8.jpg" width="220" height="342">
+    <div class="shade">
+        <h3>The Da Vinci Code</h3>
+        <p>Released: May 2006</p>
+        <p>A murder in Paris’ Louvre Museum and cryptic clues in some of Leonardo da Vinci’s most famous paintings lead to the discovery...
+    </div>
+</div>
+
+<div class="col-md-6 col-lg-4 movie-tile text-center" data-trailer-youtube-id="rxY9fKgK5OQ" data-toggle="modal" data-target="#trailer">
+    <img src="https://image.tmdb.org/t/p/original//ok5Wh8385Kgblq9MSU4VGvazeMH.jpg" width="220" height="342">
+    <div class="shade">
+        <h3>The Social Network</h3>
+        <p>Released: October 2010</p>
+        <p>On a fall night in 2003, Harvard undergrad and computer programming genius Mark Zuckerberg sits down at his computer and heat...
+    </div>
+</div>
+
+<div class="col-md-6 col-lg-4 movie-tile text-center" data-trailer-youtube-id="XgB4gaY2dWE" data-toggle="modal" data-target="#trailer">
+    <img src="https://image.tmdb.org/t/p/original//lrJWyjOVjPhghl4KyAMtOepAxs.jpg" width="220" height="342">
+    <div class="shade">
+        <h3>Return of the Jedi</h3>
+        <p>Released: May 1983</p>
+        <p>Luke Skywalker leads a mission to rescue his friend Han Solo from the clutches of Jabba the Hutt, while the Emperor seeks to ...
+    </div>
+</div>
+
+<div class="col-md-6 col-lg-4 movie-tile text-center" data-trailer-youtube-id="YZbHagBNY98" data-toggle="modal" data-target="#trailer">
+    <img src="https://image.tmdb.org/t/p/original//2VDPeoPJ2bKdmfuJxxCktx1hr5g.jpg" width="220" height="342">
+    <div class="shade">
+        <h3>This Is Spinal Tap</h3>
+        <p>Released: May 1984</p>
+        <p>"This Is Spinal Tap" shines a light on the self-contained universe of a metal band struggling to get back on the charts, incl...
+    </div>
+</div>
+
+<div class="col-md-6 col-lg-4 movie-tile text-center" data-trailer-youtube-id="HCKnld3PS70" data-toggle="modal" data-target="#trailer">
+    <img src="https://image.tmdb.org/t/p/original//4j2tBAusIVev4ZaScncIHknP7eV.jpg" width="220" height="342">
+    <div class="shade">
+        <h3>Dirty Harry</h3>
+        <p>Released: December 1971</p>
+        <p>When a madman dubbed 'Scorpio' terrorizes San Francisco, hard-nosed cop, Harry Callahan – famous for his take-no-prisoners ap...
+    </div>
+</div>
+
+<div class="col-md-6 col-lg-4 movie-tile text-center" data-trailer-youtube-id="Elczv0ghqw0" data-toggle="modal" data-target="#trailer">
+    <img src="https://image.tmdb.org/t/p/original//66HbvNKmfxYoOHAp1IVIYQsFoeA.jpg" width="220" height="342">
+    <div class="shade">
+        <h3>Anchorman 2: The Legend Continues</h3>
+        <p>Released: December 2013</p>
+        <p>With the 70s behind him, San Diego's top rated newsman, Ron Burgundy, returns to take New York's first 24-hour news channel b...
+    </div>
+</div>
+
+<div class="col-md-6 col-lg-4 movie-tile text-center" data-trailer-youtube-id="V75dMMIW2B4" data-toggle="modal" data-target="#trailer">
+    <img src="https://image.tmdb.org/t/p/original//56zTpe2xvaA4alU51sRWPoKPYZy.jpg" width="220" height="342">
+    <div class="shade">
+        <h3>The Lord of the Rings: The Fellowship of the Ring</h3>
+        <p>Released: December 2001</p>
+        <p>Young hobbit Frodo Baggins, after inheriting a mysterious ring from his uncle Bilbo, must leave his home in order to keep it ...
+    </div>
+</div>
+
+    </div>
+  </body>
+</html>

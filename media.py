@@ -1,6 +1,7 @@
 import json
-import urllib2
+import urllib3
 import webbrowser
+import requests
                           
 #Class that will pull all movie details based on title
 #Uses The Movie Database(TMDb) API to pull movie details found at https://themoviedb.org
@@ -21,23 +22,23 @@ class Movie():
         self.release_date = self.fix_date(self.movie_details['release_date'])  #pulls release date from dict
         
     def get_movie_id(self):  #Uses the movie_title to query TMDb API
-        obj = urllib2.urlopen(Movie.url+"search/movie" + Movie.api_key + "&query="
+        obj = requests.get(Movie.url+"search/movie" + Movie.api_key + "&query="
                               + self.movie_title)  # Uses movie_title to search Db
-        data = json.load(obj)  #loads movie dictionary from API
+        data = obj.json()  #loads movie dictionary from API
         movie_id = str(data['results'][0]['id'])  #Pulls movie id from dict
         return movie_id  #Movie_id is necessary to get most info
     
     def load_movie_info(self):  #won't work to get trailer due to API
         #pull full detail dictionary for specific movie ID
-        get_info = urllib2.urlopen(Movie.url + "movie/" +
+        get_info = requests.get(Movie.url + "movie/" +
                                    self.movie_id + Movie.api_key)
-        detail = json.load(get_info)
+        detail = get_info.json()
         return detail
     
     def get_trailer(self):
-        info = urllib2.urlopen(Movie.url + "movie/" + self.movie_id + "/videos" + Movie.api_key)
+        info = requests.get(Movie.url + "movie/" + self.movie_id + "/videos" + Movie.api_key)
         youtube = "https://www.youtube.com/watch?v="
-        detail = json.load(info)
+        detail = info.json()
         return youtube + str(detail['results'][0]['key'])
 
     #take date argument year-month-day to return Month Year
